@@ -1,18 +1,18 @@
 
 menu zoneMenu;
-int[] zoneNumbers = new int[5];
+String[] zoneNumbers = new String[5];
 
 void setup(){
  size(600, 400);
  background(0, 0, 0);
- zoneMenu = new menu(100, 200);
+ zoneMenu = new menu(100, 200, zoneNumbers);
  
  //ASSIGN VALUES TO zoneNumbers ARRAY
- zoneNumbers[0] = 0;
- zoneNumbers[1] = 1;
- zoneNumbers[2] = 2;
- zoneNumbers[3] = 3;
- zoneNumbers[4] = 4;
+ zoneNumbers[0] = 'Pacific';
+ zoneNumbers[1] = 'Mountian';
+ zoneNumbers[2] = 'Central';
+ zoneNumbers[3] = 'Eastern';
+ zoneNumbers[4] = 'Zulu';
 
 
 }
@@ -39,11 +39,13 @@ class menu {
   int ty3;
   color boxFill = color(0, 0, 0);
   color triFill = color(255, 255, 255);
+  String[] menuItems;
   
-  menu(int tempX, int tempY) {
+  menu(int tempX, int tempY, String[] tempMenuItems) {
     
     xPos = tempX;
     yPos = tempY;
+    String[] = tempMenuItems;
     
     //TRANGULATE!
     tx1 = ( xPos + boxWidth - 20);
@@ -68,15 +70,30 @@ class menu {
   
   void mouseOver() {
    
+   boolean openMenu = false;
+    
    if( mouseX > xPos && mouseX < (xPos + boxWidth) && mouseY > yPos && mouseY < (yPos + boxHeight) ){
    
        boxFill = color(255, 255, 255);
        triFill = color(0, 0, 0);
+       if (mousePressed == true) {
+         boxFill = color(180, 180, 180);
+         openMenu = true;
+       }
+       
+       if (openMenu == true) {
+         
+         
+         menuList openMenuList = new menuList(xpos, ypos, boxWidth, boxHeight, menuItems);
+         openMenuList.display();
+         
+       }
      
    } else {
     
       boxFill = color(0, 0, 0);
       triFill = color(255, 255, 255);
+      openMenu = false;
      
    }
     
@@ -84,5 +101,32 @@ class menu {
   
 }
 
-
+class menuList {
+ 
+  int menuItemsCount;
+  int menuHeight;
+  int menuX;
+  int menuY;
+  int menuWidth;
+  int menuLineHeight;
+  
+ menuList(int tempMenuX, int tempMenuY, int tempMenuWidth, int, tempLineHeight, String[] tempItemList) {
+   
+  menuX = tempMenuX;
+  menuY = tempMenuY;
+  menuWidth = tempMenuWidth;
+  menuItemsCount = tempItemList.length;
+  
+  menuHeight = (menuLineHeight * menuItemsCount);
+   
+ }
+ 
+ void display(){
+  
+  fill(255, 255, 255)
+  rect(menuX, menuY, menuWidth, menuHeight);
+   
+ }
+  
+}
 
