@@ -82,7 +82,7 @@ class menu {
    
 
    
-   if (mouseOut == true) {
+   if (openMenu == false || mouseOut == true) {
     
       boxFill = color(0, 0, 0);
       triFill = color(255, 255, 255);
@@ -128,6 +128,7 @@ class menuList {
   int menuY;
   int menuWidth;
   int menuLineHeight;
+  String[] menuItems;
 
 
   
@@ -138,7 +139,7 @@ class menuList {
   menuWidth = tempMenuWidth;
   menuItemsCount = tempItemList.length;
   menuLineHeight = tempLineHeight;
-
+  menuItems = tempItemList;
   
   menuHeight = (menuLineHeight * menuItemsCount);
    
@@ -148,6 +149,16 @@ class menuList {
   
     fill(255, 255, 255);
     rect(menuX, menuY, menuWidth, menuHeight);
+    //ESTABLISHES INITIAL POSITIONS FOR MENU ITEMS
+    int menuItemX = menuX + 5;
+    int menuItemYstart = menuY + 15;
+    
+    for (int i = 0; i < menuItemsCount; i = i +1){
+       int menuItemY = menuItemYstart + (menuLineHeight * i);
+       println(menuItemY, menuLineHeight, i);
+       fill(255, 0, 0);
+       text(menuItems[i], menuItemX, menuItemY);
+    }
  }
  
  
